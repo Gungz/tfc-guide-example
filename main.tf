@@ -30,3 +30,12 @@ data "aws_security_group" "default" {
   vpc_id = "${data.aws_vpc.default.id}"
   name   = "default"
 }
+
+resource "aws_instance" "ubuntu" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+
+  tags = {
+    Name = var.instance_name
+  }
+}
